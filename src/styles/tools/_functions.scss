@@ -1,0 +1,39 @@
+/**
+ * Function to calculate rems
+*/
+@function to-rem($target, $context: $base-font-size) {
+    @if $use-rem-unit {
+        @return ( $target / $context ) * 1rem;
+    } @else {
+        @return $target;
+    }
+}
+
+/**
+ * Colors
+*/
+@function color($target) {
+    $color: map-get($colors, global-color);
+    $color-found: false;
+
+    @each $key, $color in $colors {
+        @if $target == $key { $color-found: true; }
+    }
+
+    @if $color-found { 
+        $color: map-get($colors, $target);
+    } @else {  @warn "Color does not exist"; }
+
+    @return $color;
+}
+
+/**
+ * Text contrast
+*/
+@function text-contrast($color) {
+    @if (lightness(color($color)) > 50) {
+        @return color(global-color);
+    } @else {
+        @return color(global-inverse-color);
+    }
+}

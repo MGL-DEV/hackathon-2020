@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "settings/colors";
+@import "settings/global";
+
+@import "tools/functions";
+
+@import "generic/normalize";
+@import "generic/reset";
+@import "generic/box-sizing";
+
+@import "elements/page";
+@import "elements/flow-content";
+@import "elements/images";
+
+// Objects
+
+// Components
+
+@import "trumps/spacer";
+@import "trumps/display";
+@import "trumps/text";
+@import "trumps/colors";

@@ -1,0 +1,19 @@
+/**
+ * Color palette & management
+*/
+$colors: (
+    global-color: black,
+    global-inverse-color: black,
+    anchor-color: black,
+    alert-color:  black,
+    
+    lightest-color: black,
+    lighter-color: black,
+    light-color: black,
+    dark-color: black,
+    darker-color: black, 
+    darkest-color:  black,
+    
+    shadow-color: rgba(0,0,0,.25),
+    overlay-color: rgba(0,0,0,.75)
+);

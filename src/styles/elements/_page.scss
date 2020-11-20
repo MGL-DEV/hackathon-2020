@@ -1,0 +1,14 @@
+/**
+ * Basic
+*/
+body
+{
+    color: color(global-color);
+
+    font-family: $base-family-sans;
+    font-size: $base-font-size;
+    font-weight: 300;
+    line-height: 1.7em;
+
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,7 @@
+/**
+ * Colors
+*/
+@each $key, $color in $colors {
+    .color--#{$key} { color: $color; }
+    .fill--#{$key} { background-color: $color; }
+}
