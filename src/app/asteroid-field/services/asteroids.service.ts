@@ -58,8 +58,8 @@ export class AsteroidsService {
         });
     }
 
-    get() {
-        this.iDBService.get("asteroids", "asteroids")
+    get(callback: () => any) {
+        this.iDBService.get("asteroids", "asteroids", callback)
     }
 
 }
