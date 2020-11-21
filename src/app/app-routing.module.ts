@@ -4,7 +4,9 @@ import { Routes, RouterModule } from "@angular/router";
 const routes: Routes = [
     {
         path: "",
-        pathMatch: "full",
+        loadChildren: () => import("./control-views/control-views.module").then(m => m.ControlViewsModule)
+    }, {
+        path: "cinematics",
         loadChildren: () => import("./cinematics/cinematics.module").then(m => m.CinematicsModule)
     }, {
         path: "jsm9000",
@@ -12,6 +14,18 @@ const routes: Routes = [
     }, {
         path: "asteroid-field",
         loadChildren: () => import("./asteroid-field/asteroid-field.module").then(m => m.AsteroidFieldModule)
+    }, {
+        path: "spacecraft",
+        loadChildren: () => import("./spacecraft/spacecraft.module").then(m => m.SpacecraftModule)
+    }, {
+        path: "report",
+        loadChildren: () => import("./report/report.module").then(m => m.ReportModule)
+    }, {
+        path: "alien-hunting",
+        loadChildren: () => import("./alien-hunting/alien-hunting.module").then(m => m.AlienHuntingModule)
+    }, {
+        path: "run",
+        loadChildren: () => import("./run/run.module").then(m => m.RunModule)
     }
 ];
 

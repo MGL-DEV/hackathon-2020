@@ -1,2 +1,4 @@
-<app-machine-face></app-machine-face>
-<app-display [chapter]="chapter" (ready)="next()"></app-display>
+<ng-container *ngIf="chapter">
+    <app-machine-face></app-machine-face>
+    <app-display [source]="chapter.source" (ready)="next()"></app-display>
+</ng-container>

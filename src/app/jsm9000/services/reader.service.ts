@@ -8,9 +8,9 @@ export class ReaderService {
 
     constructor() { }
 
-    read(): Observable<string> {
+    read(url): Observable<string> {
         return new Observable(observer => {
-            fetch("./assets/subtitles/introduction.txt").then(response => {
+            fetch(url).then(response => {
                 const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
                 return reader.read().then( function processResult(result) {
                     if (result.done) {

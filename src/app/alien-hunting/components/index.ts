@@ -1,0 +1,1 @@
+export * from "./alien-hunting/alien-hunting.component";

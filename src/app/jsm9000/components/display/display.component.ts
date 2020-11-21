@@ -11,7 +11,7 @@ import { VoiceOverService } from "@app/jsm9000/services/voice-over.service";
 export class DisplayComponent implements OnInit, OnDestroy {
 
     @Input()
-    public chapter: string;
+    public source: string;
 
     @Output()
     public ready: EventEmitter<SpeechSynthesisEvent> = new EventEmitter();
@@ -25,10 +25,9 @@ export class DisplayComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        // this.chapter
-        this.readerService.read().subscribe( text => {
+        this.readerService.read(this.source).subscribe( text => {
             this.print(text);
-            // this.voiceOverService.utter(text, event => this.ready.emit(event));
+            this.voiceOverService.utter(text, event => this.ready.emit(event));
         });
     }
 
