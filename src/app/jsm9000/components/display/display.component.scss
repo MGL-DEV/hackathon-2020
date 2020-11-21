@@ -1,0 +1,33 @@
+.display
+{
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: calc(100vh - 130px);
+    padding: 15px;
+
+    background: black;
+
+    &__console
+    {
+        flex: 1 1 auto;
+
+        letter-spacing: .02em;
+
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, .9), 0 0 20px #30cdff, 20px -30px 25px rgba(204, 246, 255, .25);
+
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 36px;
+
+        filter: blur(.5px);
+
+        &:before
+        {
+            content: '<_ ';
+        }
+    }
+}

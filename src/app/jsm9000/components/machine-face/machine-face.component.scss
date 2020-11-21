@@ -1,8 +1,62 @@
 .machine-face
 {
+    position: relative;
+    z-index: 100;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    height: 130px;
+    padding: 15px;
+
     background-color: black;
+    box-shadow: 0 18px 30px 0 #000000;
+
+    &__logo
+    {
+        width: 200px;
+    }
+
+    &__eye
+    {
+        position: relative;
+
+        width: 100px;
+
+        &:after
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            content: '';
+            animation-name: pulse;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+
+            opacity: 0;
+            background: url(/assets/images/machine-eye-active.png) center/cover;
+        }
+    }
+}
+
+@keyframes pulse
+{
+    from
+    {
+        opacity: 0;
+    }
+
+    50%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        opacity: 0;
+    }
 }

@@ -7,8 +7,6 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class MachineFaceComponent implements OnInit {
 
-    @Input() alarm: boolean;
-
     constructor() { }
 
     ngOnInit(): void {
