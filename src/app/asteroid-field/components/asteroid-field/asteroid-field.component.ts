@@ -18,7 +18,7 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     public canvas: ElementRef;
 
     public eventDestroy = this.handleEventDestroy.bind(this)
-
+    public timeout = null
     public sound: Sound;
 
     constructor(
@@ -30,13 +30,19 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
 
     handleEventDestroy() {
         this.sound.track.get("explosion").play()
+        clearTimeout(this.timeout)
+        /**
+         * Die
+         */
+
+        //this.next()
         try {
             navigator.vibrate([200,200])
         } catch (error) { }
     }
 
     ngOnInit(): void {
-        setTimeout( () => this.next(), 2000);
+        this.timeout = setTimeout( () => this.next(), 20000);
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
 
@@ -44,6 +50,8 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     ngOnDestroy() {
+        this.sound.track.get("explosion").stop()
+        this.sound.track.get("gameLoop").stop()
         window.removeEventListener("shipDestroyed", this.eventDestroy, false)
     }
 
@@ -123,5 +131,4 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     next(): void {
         this.router.navigateByUrl("/jsm9000/asteroid-field-success");
     }
-
 }

@@ -52,7 +52,7 @@ export default class Asteroid {
         }
 
         if(this.args.scale.height !== undefined) {
-            this.args.scale.canvasObject.height = this.args.scale.height
+            this.args.scale.canvasObject.height = this.args.scale.height - 10
         }
 
         window.addEventListener("resize", this.resizeCanvas.bind(this), false);
@@ -61,7 +61,6 @@ export default class Asteroid {
         window.addEventListener("deviceorientation", this.handleOrientation.bind(this), true);
 
         this.ctx = this.args.scale.canvasObject.getContext("2d")
-
 
         this.createPlayer()
 
