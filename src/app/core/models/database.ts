@@ -46,7 +46,7 @@ export default class Database {
         }
     }
 
-    read(objectStore: string, key: string): void {
+    read(objectStore: string, key: string, callback: Function): void {
         let open = this.indexedDB.open(this.name, 3)
         open.onupgradeneeded = function () {
             let db = open.result
@@ -56,21 +56,27 @@ export default class Database {
         }
         open.onsuccess = () => {
             let db = open.result
-            let rx = db.transaction(objectStore, 'readwrite')
-            let store = rx.objectStore(objectStore)
-            store.get(key)
-            store.onsuccess = (event) => {
-                console.log(store.result);
-                db.close()
-            };
-            store.onerror = (event) => {
-                console.log(store.result);
-                db.close()
-            };
+            let transaction = db.transaction([objectStore]);
+            let object_store = transaction.objectStore(key);
+            let request = object_store.openCursor();
 
-            /*if(callback !== null && typeof callback == 'function') {
-                    callback(store.result)
-                }*/
+            request.onerror = function(event) {
+                console.error("error fetching data");
+            };
+            request.onsuccess = function(event) {
+                let cursor = event.target.result;
+                if (cursor) {
+                    let key = cursor.primaryKey;
+                    let value = cursor.value;
+                    cursor.continue();
+                    if(callback !== undefined && typeof callback == 'function') {
+                        callback(value)
+                    }
+                }
+                else {
+                    // no more results
+                }
+            };
         }
         open.onerror = function (): void {
             console.log("Database connection error")

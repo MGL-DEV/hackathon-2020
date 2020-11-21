@@ -17,8 +17,8 @@ export class IDBService {
         this.database.insert(objectStore, data)
     }
 
-    get(objectStore: string, key: string) {
-        this.database.read(objectStore, key)
+    get(objectStore: string, key: string, callback: () => any) {
+        return this.database.read(objectStore, key, callback)
     }
 
 }

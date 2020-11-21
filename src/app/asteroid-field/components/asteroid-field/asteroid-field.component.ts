@@ -44,72 +44,74 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
 
     ngAfterViewInit(): void {
         this.asteroidsService.generate()
-        console.log(this.asteroidsService.get())
-        const asteroid = new Asteroid({
-            scale: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                canvasObject: this.canvas.nativeElement
-            },
-            images: [
-                {
-                    key: "asteorid_1",
-                    value: "./assets/images/ASTEROID_1.png",
-                    size: {
-                        width: 99,
-                        height: 118
+        this.asteroidsService.get((data:any = {}) => {
+            const asteroid = new Asteroid({
+                asteroids: data.value,
+                scale: {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    canvasObject: this.canvas.nativeElement
+                },
+                images: [
+                    {
+                        key: "asteorid_1",
+                        value: "./assets/images/ASTEROID_1.png",
+                        size: {
+                            width: 70,
+                            height: 83
+                        }
+                    }, {
+                        key: "asteorid_2",
+                        value: "./assets/images/ASTEROID_2.png",
+                        size: {
+                            width: 80,
+                            height: 85
+                        }
+                    }, {
+                        key: "asteorid_3",
+                        value: "./assets/images/ASTEROID_3.png",
+                        size: {
+                            width: 80,
+                            height: 96
+                        }
+                    }, {
+                        key: "asteorid_4",
+                        value: "./assets/images/ASTEROID_4.png",
+                        size: {
+                            width: 70,
+                            height: 83
+                        }
+                    }, {
+                        key: "ship",
+                        value: "./assets/images/ship.png",
+                        size: {
+                            width: 54,
+                            height: 141
+                        }
+                    }, {
+                        key: "star_background",
+                        value: "./assets/images/star_background.png",
+                        size: {
+                            width: 1075,
+                            height: 1920
+                        }
+                    }, {
+                        key: "background",
+                        value: "./assets/images/asteroid_background.png",
+                        size: {
+                            width: 1080,
+                            height: 1920
+                        }
+                    }, {
+                        key: "fog_background",
+                        value: "./assets/images/fog_background.png",
+                        size: {
+                            width: 2000,
+                            height: 2000
+                        }
                     }
-                }, {
-                    key: "asteorid_2",
-                    value: "./assets/images/ASTEROID_2.png",
-                    size: {
-                        width: 123,
-                        height: 130
-                    }
-                }, {
-                    key: "asteorid_3",
-                    value: "./assets/images/ASTEROID_3.png",
-                    size: {
-                        width: 109,
-                        height: 130
-                    }
-                }, {
-                    key: "asteorid_4",
-                    value: "./assets/images/ASTEROID_4.png",
-                    size: {
-                        width: 87,
-                        height: 103
-                    }
-                }, {
-                    key: "ship",
-                    value: "./assets/images/ship.png",
-                    size: {
-                        width: 54,
-                        height: 141
-                    }
-                }, {
-                    key: "star_background",
-                    value: "./assets/images/star_background.png",
-                    size: {
-                        width: 1075,
-                        height: 1920
-                    }
-                }, {
-                    key: "background",
-                    value: "./assets/images/asteroid_background.png",
-                    size: {
-                        width: 1080,
-                        height: 1920
-                    }
-                }, {
-                    key: "fog_background",
-                    value: "./assets/images/fog_background.png",
-                    size: {
-                        width: 2000,
-                        height: 2000
-                    }
-                }
-            ]
+                ]
+            })
         })
     }
 

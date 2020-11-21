@@ -14,8 +14,10 @@ export default class Asteroid {
     backgroundFogSpeed = 1.5
     backgroundFogHeight = 0
     lastAsteroidCreated = 0
+    preloadAsteroids = []
     constructor(args: Args) {
         this.load = new CanvasLoadImages();
+        this.preloadAsteroids = args.asteroids
         this.asteroids = []
         this.cursors = {
             left: { isDown: false},
@@ -184,7 +186,6 @@ export default class Asteroid {
     }
 
     createPlayer() {
-
         const asset = this.load.images.ship
         this.player = {
             health: 100,
@@ -248,30 +249,31 @@ export default class Asteroid {
     }
 
     generateAsteroid(): boolean {
-        if((Date.now() - this.lastAsteroidCreated) < 1500) {
+        if((Date.now() - this.lastAsteroidCreated) < 1600) {
             return false
         }
 
-        const asteroidId = this.getRandom(1,4)
-        const asteroidKey = `asteorid_${asteroidId}`
+        if(this.preloadAsteroids.length === 0) {
+            throw new Error("no more item")
+        }
 
-        if(this.load.images[asteroidKey] === undefined) {
+        const asteroid = this.preloadAsteroids.pop()
+
+        if(this.load.images[asteroid.assets] === undefined) {
             throw new Error("no asset found")
         }
 
-        try {
-            navigator.vibrate(100)
-        } catch (error) { }
+        try { navigator.vibrate(100) } catch (error) { }
 
         this.lastAsteroidCreated = Date.now()
-        const asset = this.load.images[asteroidKey]
+        const asset = this.load.images[asteroid.assets]
         const x = this.getRandom(asset.size.width / 3, this.args.scale.canvasObject.width - asset.size.width - asset.size.width / 3)
         const y = -200
         const speed = this.getRandom(4, 5)
 
         this.asteroids.push({
+            ...asteroid,
             speed,
-            assets: asteroidKey,
             coord: {
                 x,
                 y
