@@ -3,11 +3,13 @@ import { CommonModule } from "@angular/common";
 
 import { SharedModule } from "@shared/shared.module";
 import { Jsm9000RoutingModule } from "./jsm9000-routing.module";
-import { DisplayComponent } from "./components";
+import { Jsm9000Component, MachineFaceComponent, DisplayComponent } from "./components";
 
 @NgModule({
     declarations: [
-        DisplayComponent
+        DisplayComponent,
+        MachineFaceComponent,
+        Jsm9000Component
     ],
     imports: [
         CommonModule,

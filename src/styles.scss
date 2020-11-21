@@ -1,7 +1,4 @@
-@import "settings/colors";
 @import "settings/global";
-
-@import "tools/functions";
 
 @import "generic/normalize";
 @import "generic/reset";
@@ -10,12 +7,3 @@
 @import "elements/page";
 @import "elements/flow-content";
 @import "elements/images";
-
-// Objects
-
-// Components
-
-@import "trumps/spacer";
-@import "trumps/display";
-@import "trumps/text";
-@import "trumps/colors";
