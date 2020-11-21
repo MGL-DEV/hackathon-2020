@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service";
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
@@ -21,10 +22,11 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     public sound: Sound;
 
     constructor(
-            public soundEffectsService: SoundEffectsService,
-            public asteroidsService: AsteroidsService
-        ) {
-    }
+        private route: ActivatedRoute,
+        private router: Router,
+        public soundEffectsService: SoundEffectsService,
+        public asteroidsService: AsteroidsService
+    ) { }
 
     handleEventDestroy() {
         this.sound.track.get("explosion").play()
@@ -34,6 +36,7 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     ngOnInit(): void {
+        setTimeout( () => this.next(), 2000);
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
 
@@ -113,6 +116,10 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
                 }
             ]
         })
+    }
+
+    next(): void {
+        this.router.navigateByUrl("/jsm9000/asteroid-field-success");
     }
 
 }

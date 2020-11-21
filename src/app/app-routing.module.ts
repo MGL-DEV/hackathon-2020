@@ -20,6 +20,12 @@ const routes: Routes = [
     }, {
         path: "report",
         loadChildren: () => import("./report/report.module").then(m => m.ReportModule)
+    }, {
+        path: "alien-hunting",
+        loadChildren: () => import("./alien-hunting/alien-hunting.module").then(m => m.AlienHuntingModule)
+    }, {
+        path: "run",
+        loadChildren: () => import("./run/run.module").then(m => m.RunModule)
     }
 ];
 
