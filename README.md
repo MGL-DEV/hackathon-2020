@@ -31,6 +31,10 @@
 - Pocophone f1 10 QKQ1.190828.002
 - Chrome Browser V87.0.4280.66
 
+## Introduction video
+
+- https://youtu.be/vXxBBwSLS6U
+
 ## Demo enviroment
 
 - https://sileo.mgldev.hu/
