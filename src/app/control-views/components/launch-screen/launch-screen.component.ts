@@ -13,6 +13,26 @@ export class LaunchScreenComponent implements OnInit {
     constructor(private router: Router, private asteroidsService: AsteroidsService) { }
 
     ngOnInit(): void {
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition((position):void => {
+                console.log('ok')
+            }, (error) => {
+                console.log(error)
+            }, {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            });
+        }
+        if(navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    width: 0,
+                    height: 0
+                }
+            })
+        }
     }
 
     start(): void {
