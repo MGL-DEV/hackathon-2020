@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
+import { StorageService } from "@core/services/storage.service";
+
 @Component({
     selector: "app-mission-failed",
     templateUrl: "./mission-failed.component.html",
@@ -8,12 +10,12 @@ import { Component, OnInit } from "@angular/core";
 export class MissionFailedComponent implements OnInit {
 
     public output = "";
-    private speedOfPrintOut = 15;
+    private speedOfPrintOut = 25;
 
-    constructor() { }
+    constructor(private storageService: StorageService) { }
 
     ngOnInit(): void {
-        this.print("Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name?");
+        this.print(this.storageService.get("log").join("\n"));
     }
 
     share(): void {
