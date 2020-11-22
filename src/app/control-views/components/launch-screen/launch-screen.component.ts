@@ -42,9 +42,11 @@ export class LaunchScreenComponent implements OnInit {
         }
 
         this.storage.append("log", "Successful takeoff")
-        this.websocketService.send({
-            status: 1
-        })
+        setTimeout(() => {
+            this.websocketService.send({
+                status: 1
+            })
+        }, 1000)
     }
 
     start(): void {
