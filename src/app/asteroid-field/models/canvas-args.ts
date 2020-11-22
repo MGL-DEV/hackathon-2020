@@ -1,5 +1,5 @@
 export default interface Args {
-    asteroids: Item[]
+    asteroids: Item2[]
     scale: Scale;
     images: Images[];
 }
@@ -21,7 +21,7 @@ interface Images {
     size: Size
 }
 
-interface Item {
+interface Item2 {
     speed: number,
     assets: string,
     coord: Coord,
