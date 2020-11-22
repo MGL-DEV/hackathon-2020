@@ -20,7 +20,6 @@ export class LaunchScreenComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition((position): void => {
                 console.log("ok")

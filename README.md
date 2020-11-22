@@ -1,31 +1,4 @@
 # hackathon-2020
-​
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
-
-## Usable WEB Api list
-
-- Canvas API
-- Clipboard API
-- DeviceOrientationEvent
-- File System API
-- Geolocation API
-- Image Capture API
-- IndexedDB
-- Intersection Observer
-- Navigator.share()
-- Page Visibility API
-- Performance API
-- ReadableStream
-- Resize Observer API
-- Resource Timing API
-- Service Workers API
-- Web Animations
-- Web Audio API
-- Web Speech API
-- Web Storage API
-- Web Workers API
-- WebRTC
-- WebSockets API
 
 ## Spinned WEB Api list
 
@@ -58,6 +31,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Pocophone f1 10 QKQ1.190828.002
 - Chrome Browser V87.0.4280.66
 
+## Demo enviroment
+
+- https://sileo.mgldev.hu/
+
 ## Install
 
 Run `npm install` to install packages.
@@ -73,14 +50,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 ​
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-​
-## Running unit tests
-​
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-​
-## Running end-to-end tests
-​
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 ​
 ## Further help
 ​
