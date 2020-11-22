@@ -1,3 +1,5 @@
+/// <reference types="@types/dom-mediacapture-record" />
+
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { IDBService } from "@app/core/services/idb.service";
@@ -21,8 +23,8 @@ export class ReportComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        //setTimeout( () => this.next(), 2000);
-        let button = document.querySelector('.record-button');
+        // setTimeout( () => this.next(), 2000);
+        let button = document.querySelector(".record-button");
 
         button.addEventListener("touchstart", (event) => {
             this.start()
@@ -32,15 +34,15 @@ export class ReportComponent implements OnInit {
             this.stop()
         });
 
-        this.video = document.querySelector('#video');
+        this.video = document.querySelector("#video");
         const rect = this.video.getBoundingClientRect()
 
         const width = rect.width > rect.height ? rect.width : rect.height
         const height = rect.width > rect.height ? rect.height : rect.width
         navigator.mediaDevices.getUserMedia({
             video: {
-                width: width,
-                height: height
+                width,
+                height
             },
             audio: true
         }).then(stream => {
@@ -65,7 +67,7 @@ export class ReportComponent implements OnInit {
         });
 
         this.wait(10000).then(
-            () => this.recorder.state == "recording" && this.stop()
+            () => this.recorder.state === "recording" && this.stop()
         );
 
         return Promise.all([
@@ -102,8 +104,8 @@ export class ReportComponent implements OnInit {
             });
     }
     toggleRec(): void {
-        let rec = (document.querySelector('#rec') as HTMLElement);
-        if (rec.style.display == "none") {
+        let rec = (document.querySelector("#rec") as HTMLElement);
+        if (rec.style.display === "none") {
             rec.style.display = "block";
         } else {
             rec.style.display = "none";
