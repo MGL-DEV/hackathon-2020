@@ -13,7 +13,7 @@
     background: url(/assets/images/launch-screen-background.jpg) center/cover;
 }
 
-h1
+.title
 {
     letter-spacing: .35em;
     text-transform: uppercase;
@@ -23,12 +23,20 @@ h1
     filter: blur(.5px);
 }
 
-button
+.logo 
+{
+    img 
+    {
+        width: 250px;
+    }
+}
+
+.button
 {
     display: block;
 
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     padding: 12px 15px;
 
     text-align: center;
@@ -51,7 +59,7 @@ button
 p
 {
     max-width: 325px;
-    margin: 60px auto 0 ;
+    margin: 40px auto 0;
 
     letter-spacing: .1em;
     text-transform: uppercase;
