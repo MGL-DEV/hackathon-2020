@@ -47,6 +47,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - WebRTC
 - WebSockets API
 
+## Requirements
+
+- Android OS
+- Chrome Browser Application
+
 ## Install
 
 Run `npm install` to install packages.

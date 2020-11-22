@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild  } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
@@ -42,20 +42,20 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
         this.timerSubscribe = source.subscribe(val => {
             this.countdown -= 0.1
 
-            if(this.countdown <= 0) {
+            if (this.countdown <= 0) {
                 this.countdown = 0
-                //this.fail()
+                this.fail()
                 this.timerSubscribe.unsubscribe()
             }
         });
 
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition((position):void => {
-                if(this.progress.nativeElement) {
+            navigator.geolocation.watchPosition((position): void => {
+                if (this.progress.nativeElement) {
                     this.progress.nativeElement.style.width = `${position.coords.speed / this.requiredSpeed * 100}%`
                 }
                 const prec70 = 0.7 * this.requiredSpeed
-                if(position.coords.speed >= prec70) {
+                if (position.coords.speed >= prec70) {
                     this.sound.track.get("gameLoop").stop()
                     this.timerSubscribe.unsubscribe()
                     this.next()
