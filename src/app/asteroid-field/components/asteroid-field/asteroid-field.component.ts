@@ -20,6 +20,7 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     public eventDestroy = this.handleEventDestroy.bind(this)
     public timeout = null
     public sound: Sound;
+    public asteroid: Asteroid
 
     constructor(
         private route: ActivatedRoute,
@@ -50,11 +51,12 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
         this.sound.track.get("explosion").stop()
         this.sound.track.get("gameLoop").stop()
         window.removeEventListener("shipDestroyed", this.eventDestroy, false)
+        this.asteroid.unsubscribe()
     }
 
     ngAfterViewInit(): void {
         this.asteroidsService.get((data:any = {}) => {
-            const asteroid = new Asteroid({
+            this.asteroid = new Asteroid({
                 asteroids: data.value,
                 scale: {
                     width: window.innerWidth,

@@ -53,7 +53,7 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
             }
             if(this.countdown <= 0) {
                 this.countdown = 0
-                //this.fail()
+                this.fail()
                 this.timerSubscribe.unsubscribe()
             }
         });

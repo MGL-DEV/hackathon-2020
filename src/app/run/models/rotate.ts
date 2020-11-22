@@ -9,6 +9,7 @@ export default class Rotate {
     radius = 35
     angleSpeed = 0.0
     requiredSpeed = 0.5
+    isUnsubscribe = false
     constructor(args: Args) {
         this.requiredSpeed = args.requiredSpeed
         this.load = new CanvasLoadImages();
@@ -60,6 +61,7 @@ export default class Rotate {
     }
 
     update(): void {
+        if(this.isUnsubscribe === true) return;
         this.ctx.clearRect(0, 0, this.args.scale.canvasObject.width, this.args.scale.canvasObject.height)
         const asset = this.load.images.ship
 
@@ -87,6 +89,10 @@ export default class Rotate {
         this.ctx.restore();
 
         window.requestAnimationFrame(this.update.bind(this))
+    }
+
+    unsubscribe() {
+        this.isUnsubscribe = true
     }
 
     resizeCanvas() {

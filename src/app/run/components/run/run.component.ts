@@ -21,12 +21,12 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild("progress", { static: false })
     public progress: ElementRef;
 
-    public eventWin = this.handleEventWin.bind(this)
     public timeout = null
     public sound: Sound;
     public countdown = 30
     public timerSubscribe = null
     public requiredSpeed = 0.5
+    public rotate: Rotate
 
     constructor(
         private route: ActivatedRoute,
@@ -37,7 +37,6 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
-        window.addEventListener("shipDestroyed", this.eventWin, false)
 
         const source = timer(1000, 100);
         this.timerSubscribe = source.subscribe(val => {
@@ -45,7 +44,7 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
 
             if(this.countdown <= 0) {
                 this.countdown = 0
-                this.fail()
+                //this.fail()
                 this.timerSubscribe.unsubscribe()
             }
         });
@@ -55,9 +54,9 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
                 if(this.progress.nativeElement) {
                     this.progress.nativeElement.style.width = `${position.coords.speed / this.requiredSpeed * 100}%`
                 }
-                if(position.coords.speed >= this.requiredSpeed) {
+                const prec70 = 0.7 * this.requiredSpeed
+                if(position.coords.speed >= prec70) {
                     this.sound.track.get("gameLoop").stop()
-                    window.removeEventListener("shipDestroyed", this.eventWin, false)
                     this.timerSubscribe.unsubscribe()
                     this.next()
                 }
@@ -73,22 +72,12 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnDestroy() {
         this.sound.track.get("gameLoop").stop()
-        window.removeEventListener("shipDestroyed", this.eventWin, false)
         this.timerSubscribe.unsubscribe()
-    }
-
-    handleEventWin() {
-        this.sound.track.get("explosion").play()
-        clearTimeout(this.timeout)
-
-        this.next()
-        try {
-            navigator.vibrate([200,200])
-        } catch (error) { }
+        this.rotate.unsubscribe()
     }
 
     ngAfterViewInit(): void {
-        const asteroid = new Rotate({
+        this.rotate = new Rotate({
             requiredSpeed: this.requiredSpeed,
             scale: {
                 width: window.innerWidth,
