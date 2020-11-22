@@ -1,5 +1,5 @@
-import Database from "./Database"
-import Storage from "./Storage"
+import Database from "./database"
+import Storage from "./storage"
 export {
     Database,
     Storage

@@ -52,7 +52,7 @@ export default class Asteroid {
         }
 
         if(this.args.scale.height !== undefined) {
-            this.args.scale.canvasObject.height = this.args.scale.height - 10
+            this.args.scale.canvasObject.height = this.args.scale.height
         }
 
         window.addEventListener("resize", this.resizeCanvas.bind(this), false);
@@ -253,12 +253,14 @@ export default class Asteroid {
         }
 
         if(this.preloadAsteroids.length === 0) {
+            return false
             throw new Error("no more item")
         }
 
         const asteroid = this.preloadAsteroids.pop()
 
         if(this.load.images[asteroid.assets] === undefined) {
+            return false
             throw new Error("no asset found")
         }
 

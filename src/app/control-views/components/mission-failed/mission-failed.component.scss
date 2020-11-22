@@ -2,7 +2,7 @@
 {
     display: block;
 
-    height: 100vh;
+    min-height: 100vh;
     padding: 30px;
 
     text-align: center;
@@ -58,5 +58,69 @@
     &:not(:last-child)
     {
         margin-bottom: 20px;
+    }
+}
+
+.console
+{
+    text-align: left;
+
+    &__title,
+    &__description
+    {
+        text-transform: uppercase;
+    }
+
+    &__output,
+    &__title,
+    &__description
+    {
+        letter-spacing: .02em;
+
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, .4), 0 0 70px rgba(255, 255, 255, .4);
+
+        filter: blur(.5px);
+    }
+
+    &__title
+    {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.25em;
+    }
+
+    &__description
+    {
+        font-size: 14px;
+        line-height: 1.25em;
+    }
+
+    &__output
+    {
+        font-size: 14px;
+        line-height: 2.15em;
+
+        &:before
+        {
+            content: '<_ ';
+        }
+    }
+
+    &:before
+    {
+        display: block;
+
+        width: 110px;
+        height: 4px;
+        margin-bottom: 15px;
+
+        content: '';
+
+        border-radius: 2px;
+        background-color: white;
+        box-shadow: 0 0 10px rgb(255 255 255 / 60%), 0 0 70px rgb(255 255 255 / 60%);
+
+        filter: blur(.5px);
     }
 }

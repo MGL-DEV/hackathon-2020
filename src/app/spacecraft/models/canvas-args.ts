@@ -1,11 +1,11 @@
 export default interface Args {
-    asteroids: Item2[]
     scale: Scale;
     images: Images[];
 }
 
 interface Scale {
     canvasObject: HTMLCanvasElement
+    canvasProc: HTMLCanvasElement
     width: number
     height: number
 }
@@ -21,16 +21,11 @@ interface Images {
     size: Size
 }
 
-interface Item2 {
+interface Item {
     speed: number,
     assets: string,
     coord: Coord,
     size: Size
-}
-
-interface Size {
-    width: number,
-    height: number
 }
 
 interface Coord {
