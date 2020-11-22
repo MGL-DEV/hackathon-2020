@@ -52,7 +52,7 @@ export default class Asteroid {
         }
 
         if(this.args.scale.height !== undefined) {
-            this.args.scale.canvasObject.height = this.args.scale.height - 10
+            this.args.scale.canvasObject.height = this.args.scale.height
         }
 
         window.addEventListener("resize", this.resizeCanvas.bind(this), false);

@@ -1,5 +1,11 @@
 .canvas {
     &__asteroid {
+        canvas {
+            user-select: none;
+            position: relative;
+            display: block;
+        }
+
         &:before {
             content: '';
             display: block;

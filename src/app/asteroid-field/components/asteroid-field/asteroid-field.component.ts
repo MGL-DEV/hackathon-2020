@@ -31,11 +31,8 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     handleEventDestroy() {
         this.sound.track.get("explosion").play()
         clearTimeout(this.timeout)
-        /**
-         * Die
-         */
 
-        //this.next()
+        this.fail()
         try {
             navigator.vibrate([200,200])
         } catch (error) { }
@@ -130,5 +127,9 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
 
     next(): void {
         this.router.navigateByUrl("/jsm9000/asteroid-field-success");
+    }
+
+    fail(): void {
+        this.router.navigateByUrl("/mission-failed")
     }
 }

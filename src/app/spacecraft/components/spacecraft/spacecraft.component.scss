@@ -1,0 +1,72 @@
+.canvas {
+    &__wipe {
+        #canvas {
+            user-select: none;
+            position: relative;
+            display: block;
+            z-index: 2;
+        }
+
+        img {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            user-select: none;
+        }
+
+        #canvasScratched {
+            position: absolute;
+            top: 250px;
+            width: 250px;
+            height: 250px;
+            z-index: 0;
+        }
+    }
+}
+
+.spacercraft {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 0px 0px 20px #30CDFF, 20px -30px 25px rgba(204, 246, 255, 0.25);
+    filter: blur(0.5px);
+    color: #fff;
+    &__header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        z-index: 20;
+        background: rgba(0, 5, 121, 0.5);
+        &:after {
+            content: '';
+            left: 0;
+            top: 128px;
+            display: block;
+            position: absolute;
+            height: 100px;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(0, 5, 121, 0.5) 0%, rgba(0, 17, 78, 0.5) 0.01%, rgba(0, 5, 121, 0) 100%);
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__bar {
+        width: 100%;
+        border: solid 2px #9DE3FA;
+        padding: 5px;
+        position: relative;
+        border-radius: 3px;
+    }
+
+    &__progress {
+        width: 100%;
+        transition: width 0.2s;
+        background-color: #9DE3FA;
+        height: 20px;
+        border-radius: 3px;
+    }
+}
