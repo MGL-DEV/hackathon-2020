@@ -1,2 +1,3 @@
-<p>video works!</p>
-Source: {{scene.source}}
+<video #video autoplay (ended)="next()">
+    <source [src]="scene.source" type="video/mp4">
+</video>

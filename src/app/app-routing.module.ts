@@ -26,6 +26,9 @@ const routes: Routes = [
     }, {
         path: "run",
         loadChildren: () => import("./run/run.module").then(m => m.RunModule)
+    }, {
+        path: "**",
+        redirectTo: ""
     }
 ];
 
