@@ -15,6 +15,7 @@
 - IndexedDB
 - Navigator.share()
 - Web Animations
+- Web Audio API
 - Web Storage API
 - WebRTC
 - WebSockets API
