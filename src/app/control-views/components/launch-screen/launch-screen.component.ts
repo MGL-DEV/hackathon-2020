@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { StorageService } from "@app/core/services/storage.service";
+import { WebsocketService } from "@shared/services/websocket.service";
 
 import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service";
 
@@ -10,13 +12,12 @@ import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service
 })
 export class LaunchScreenComponent implements OnInit {
 
-    constructor(private router: Router, private asteroidsService: AsteroidsService) { }
+    constructor(private router: Router, private asteroidsService: AsteroidsService, public storage: StorageService, public websocketService: WebsocketService) { }
 
     ngOnInit(): void {
 
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition((position):void => {
-                console.log('ok')
+            navigator.geolocation.watchPosition((position): void => {
             }, (error) => {
                 console.log(error)
             }, {
@@ -25,7 +26,7 @@ export class LaunchScreenComponent implements OnInit {
                 maximumAge: 0
             });
         }
-        if(navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
+        if (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
                 video: {
                     width: 0,
@@ -33,11 +34,23 @@ export class LaunchScreenComponent implements OnInit {
                 }
             })
         }
+
+        this.storage.set("log", ["Successful takeoff"])
+        setTimeout(() => {
+            this.websocketService.send({
+                status: 1
+            })
+        }, 1000)
+
     }
 
     start(): void {
         document.documentElement.requestFullscreen();
         this.asteroidsService.generate();
+        this.storage.append("log", "JSM 9000 is booting")
+        this.websocketService.send({
+            status: 2
+        })
         this.router.navigateByUrl("/jsm9000/introduction");
     }
 

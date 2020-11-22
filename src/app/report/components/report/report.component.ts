@@ -2,7 +2,6 @@
 
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { IDBService } from "@app/core/services/idb.service";
 import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
@@ -20,8 +19,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public iDBService: IDBService,
-        public Storage: StorageService,
+        public storage: StorageService,
         public websocketService: WebsocketService
     ) { }
 
@@ -73,9 +71,6 @@ export class ReportComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.video.nativeElement.srcObject.getTracks().forEach((track: { stop: () => any; }) => track.stop());
             this.recording = false;
-            this.websocketService.send({
-                status: 3
-            })
             console.log("Recording stopped")
         }, 1000)
     }
@@ -87,11 +82,10 @@ export class ReportComponent implements OnInit, AfterViewInit {
             .then(recordedChunks => {
                 let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
                 recordedBlob.arrayBuffer().then(text => {
-                    this.iDBService.insert("report", {
-                        key: "video",
-                        value: text
+                    this.storage.append("log", "Video recorded and sent to NASA")
+                    this.websocketService.send({
+                        status: 6
                     })
-                    this.Storage.append("log", "Sample log")
                     this.next()
                 });
             });

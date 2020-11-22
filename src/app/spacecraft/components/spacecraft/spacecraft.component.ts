@@ -1,5 +1,7 @@
-import { Component, OnInit,OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { StorageService } from "@app/core/services/storage.service";
+import { WebsocketService } from "@shared/services/websocket.service";
 
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
 import { Sound } from "@shared/models";
@@ -38,9 +40,15 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
         private route: ActivatedRoute,
         private router: Router,
         public soundEffectsService: SoundEffectsService,
+        public storage: StorageService,
+        public websocketService: WebsocketService
     ) { }
 
     ngOnInit(): void {
+        this.storage.append("log", "Oxygen is leaking")
+        this.websocketService.send({
+            status: 5
+        })
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
         window.addEventListener("successWipe", this.eventSuccess, false)
@@ -48,10 +56,10 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
         const source = timer(1000, 100);
         this.timerSubscribe = source.subscribe(val => {
             this.countdown -= 0.1
-            if(this.progress.nativeElement) {
+            if (this.progress.nativeElement) {
                 this.progress.nativeElement.style.width = `${this.countdown / 20 * 100}%`
             }
-            if(this.countdown <= 0) {
+            if (this.countdown <= 0) {
                 this.countdown = 0
                 this.fail()
                 this.timerSubscribe.unsubscribe()
@@ -60,13 +68,17 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     handleSucces() {
+        this.storage.append("log", "Oxygen level fixed")
+        this.websocketService.send({
+            status: 5
+        })
         this.next()
         this.sound.track.get("gameLoop").stop()
         this.timerSubscribe.unsubscribe()
     }
 
     ngAfterViewInit(): void {
-        if(this.default.nativeElement) {
+        if (this.default.nativeElement) {
             this.default.nativeElement.style.width = `${window.innerWidth}px`
             this.default.nativeElement.style.height = `${window.innerHeight}px`
         }

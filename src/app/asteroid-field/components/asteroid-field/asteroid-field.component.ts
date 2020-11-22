@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { StorageService } from "@app/core/services/storage.service";
+import { WebsocketService } from "@shared/services/websocket.service";
 
 import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service";
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
@@ -26,7 +28,9 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
         private route: ActivatedRoute,
         private router: Router,
         public soundEffectsService: SoundEffectsService,
-        public asteroidsService: AsteroidsService
+        public asteroidsService: AsteroidsService,
+        public storage: StorageService,
+        public websocketService: WebsocketService
     ) { }
 
     handleEventDestroy() {
@@ -35,12 +39,16 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this.fail()
         try {
-            navigator.vibrate([200,200])
+            navigator.vibrate([200, 200])
         } catch (error) { }
     }
 
     ngOnInit(): void {
-        this.timeout = setTimeout( () => this.next(), 20000);
+        this.storage.append("log", "The ship is in an asteroid field")
+        this.websocketService.send({
+            status: 7
+        })
+        this.timeout = setTimeout(() => this.next(), 20000);
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
 
@@ -55,7 +63,7 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     ngAfterViewInit(): void {
-        this.asteroidsService.get((data:any = {}) => {
+        this.asteroidsService.get((data: any = {}) => {
             this.asteroid = new Asteroid({
                 asteroids: data.value,
                 scale: {
@@ -127,6 +135,10 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     next(): void {
+        this.storage.append("log", " The ship survived the asteroid field")
+        this.websocketService.send({
+            status: 8
+        })
         this.router.navigateByUrl("/jsm9000/asteroid-field-success");
     }
 

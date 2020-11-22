@@ -15,13 +15,11 @@ export class StorageService {
 
     append(key: string, value: string) {
         let data = [... this.get("log")];
-        console.log(key, value, data)
         data.push(value)
         this.set(key, data)
     }
 
     set(key: string, value: any) {
-        console.log(JSON.stringify(value))
         this.storage.set(key, JSON.stringify(value))
     }
 
