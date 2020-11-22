@@ -9,7 +9,7 @@ export class SoundEffectsService {
     constructor() { }
 
     get(): Sound {
-        /*const sound = new Sound({
+        const sound = new Sound({
             winLoop: "https://sileo.mgldev.hu/sound/win_loop.mp3",
             messageSent: "https://sileo.mgldev.hu/sound/message_sent.mp3",
             laserPew: "https://sileo.mgldev.hu/sound/laser_pew.mp3",
@@ -20,7 +20,7 @@ export class SoundEffectsService {
             button: "https://sileo.mgldev.hu/sound/button.mp3",
             ambientAtmo: "https://sileo.mgldev.hu/sound/ambient_atmo.mp3",
             missionFailed: "https://sileo.mgldev.hu/sound/mission_failed.mp3",
-        });*/
-        return null;
+        });
+        return sound;
     }
 }

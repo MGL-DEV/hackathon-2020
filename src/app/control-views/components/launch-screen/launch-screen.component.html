@@ -4,6 +4,6 @@
 </figure>
 <div>
     <button class="button" (click)="start()">Start mission now!</button>
-    <button class="button" (click)="start()">Mission live log</button>
     <p>FOR THE EXPERIENCE PLEASE ALLOW THE MICROPHONE, CAMERA AND LOCATION USAGE OF YOUR BROWSER!</p>
 </div>
+<div @log *ngIf="visibleLog" class="log" (click)="visibleLog = false"></div>

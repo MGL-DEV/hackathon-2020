@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 export class WebsocketService {
     ws: any;
     url: string;
+    data: [];
 
     constructor() {
         this.url = "wss://sileo.mgldev.hu:8989"
@@ -47,8 +48,8 @@ export class WebsocketService {
         return true;
     }
     handleNotification(params: any) {
-        let data = JSON.parse(params)
-        console.log(data);
+        this.data = JSON.parse(params)
+        console.log(this.data);
     }
     send(data: object) {
         console.log("send")
@@ -58,6 +59,9 @@ export class WebsocketService {
         }
 
         this.ws.send(JSON.stringify(data))
+    }
+    get() {
+        return this.data
     }
     close() {
         this.ws.close()

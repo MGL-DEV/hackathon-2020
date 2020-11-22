@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 import { Router } from "@angular/router";
 import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
@@ -8,9 +9,18 @@ import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service
 @Component({
     selector: "app-launch-screen",
     templateUrl: "./launch-screen.component.html",
-    styleUrls: ["./launch-screen.component.scss"]
+    styleUrls: ["./launch-screen.component.scss"],
+    animations: [
+        trigger("log", [
+            state("void", style({transform: "translateY(100vh)"})),
+            state("*", style({transform: "translateY(0vh)"})),
+            transition("* <=> *", [animate("500ms cubic-bezier(0.55, 0.30, 0.15, 0.90)")])
+        ])
+    ]
 })
 export class LaunchScreenComponent implements OnInit {
+
+    public visibleLog = false;
 
     constructor(
         private router: Router,
