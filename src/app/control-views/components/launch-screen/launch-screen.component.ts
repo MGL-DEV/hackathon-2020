@@ -16,7 +16,7 @@ export class LaunchScreenComponent implements OnInit {
 
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition((position):void => {
-                console.log('ok')
+                console.log("ok")
             }, (error) => {
                 console.log(error)
             }, {
@@ -25,6 +25,7 @@ export class LaunchScreenComponent implements OnInit {
                 maximumAge: 0
             });
         }
+
         if(navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
                 video: {
@@ -38,7 +39,7 @@ export class LaunchScreenComponent implements OnInit {
     start(): void {
         document.documentElement.requestFullscreen();
         this.asteroidsService.generate();
-        this.router.navigateByUrl("/jsm9000/introduction");
+        this.router.navigateByUrl("/cinematics/introduction");
     }
 
 }

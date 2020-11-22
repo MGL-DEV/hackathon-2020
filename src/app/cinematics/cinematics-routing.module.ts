@@ -5,11 +5,20 @@ import { VideoComponent } from "./components";
 
 const routes: Routes = [
     {
+        path: "introduction",
+        component: VideoComponent,
+        data: {
+            scene: {
+                source: "https://sileo.mgldev.hu/video/intro.mp4",
+                next: "/jsm9000/introduction"
+            }
+        }
+    }, {
         path: "explode",
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/robbanas.mp4",
                 next: "/jsm9000/spacecraft-chapter"
             }
         }
@@ -18,7 +27,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/atvezeto_1.mp4",
                 next: "/jsm9000/asteroid-field-chapter"
             }
         }
@@ -27,7 +36,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/atvezeto_2.mp4",
                 next: "/jsm9000/alien-hunting-chapter"
             }
         }
@@ -36,7 +45,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/atvezeto_1.mp4",
                 next: "/jsm9000/run-chapter"
             }
         }
@@ -45,7 +54,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/atvezeto_3.mp4",
                 next: "/jsm9000/end"
             }
         }
@@ -54,7 +63,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
+                source: "https://sileo.mgldev.hu/video/ending.mp4",
                 next: "/big-red-button"
             }
         }
