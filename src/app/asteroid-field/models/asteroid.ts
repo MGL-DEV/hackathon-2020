@@ -15,6 +15,7 @@ export default class Asteroid {
     backgroundFogHeight = 0
     lastAsteroidCreated = 0
     preloadAsteroids = []
+    isUnsubscribe = false
     constructor(args: Args) {
         this.load = new CanvasLoadImages();
         this.preloadAsteroids = args.asteroids
@@ -68,6 +69,7 @@ export default class Asteroid {
     }
 
     update(): void {
+        if(this.isUnsubscribe === true) return;
         this.ctx.clearRect(0, 0, this.args.scale.canvasObject.width, this.args.scale.canvasObject.height)
 
         this.renderBackground()
@@ -364,6 +366,10 @@ export default class Asteroid {
         } else {
             throw new Error("Object assets not loaded.")
         }
+    }
+
+    unsubscribe() {
+        this.isUnsubscribe = true
     }
 
     renderShip(object: Player): void {

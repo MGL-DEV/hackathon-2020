@@ -13,13 +13,14 @@
     left: 0;
     right: 0;
     width: 100%;
+    background:url('/assets/images/REC_SCREEN.png') no-repeat center/contain
 }
 
 .rec{
     position: absolute;
     left: 6%;
     top: 10%;
-    width: 19%;
+    width: 22%;
     display: none;
 }
 

@@ -3,6 +3,7 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { IDBService } from "@app/core/services/idb.service";
+import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
 @Component({
@@ -20,6 +21,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private router: Router,
         public iDBService: IDBService,
+        public Storage: StorageService,
         public websocketService: WebsocketService
     ) { }
 
@@ -89,6 +91,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
                         key: "video",
                         value: text
                     })
+                    this.Storage.append("log", "Sample log")
                     this.next()
                 });
             });

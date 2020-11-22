@@ -5,7 +5,7 @@ import { Storage } from "@app/core/models"
 @Injectable({
     providedIn: "root"
 })
-export class IDBService {
+export class StorageService {
 
     private storage;
 
@@ -13,12 +13,24 @@ export class IDBService {
         this.storage = new Storage()
     }
 
-    set(key: string, value: string) {
-        this.storage.set(key, value)
+    append(key: string, value: string) {
+        let data = [... this.get("log")];
+        console.log(key, value, data)
+        data.push(value)
+        this.set(key, data)
     }
 
-    get(key: string) {
-        return this.storage.read(key)
+    set(key: string, value: any) {
+        console.log(JSON.stringify(value))
+        this.storage.set(key, JSON.stringify(value))
+    }
+
+    get(key: string): any {
+        let data = this.storage.read(key)
+        if (data !== undefined) {
+            return JSON.parse(data)
+        }
+        return []
     }
 
 }
