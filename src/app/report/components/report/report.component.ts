@@ -42,8 +42,8 @@ export class ReportComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        setTimeout( () => this.next(), 1000);
     }
+
     startRecording(stream: any): any {
         this.recorder = new MediaRecorder(stream);
         let data: any = [];

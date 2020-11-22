@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
+import { StorageService } from "@core/services/storage.service";
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
 import { Sound } from "@shared/models";
 
@@ -11,17 +12,17 @@ import { Sound } from "@shared/models";
 export class MissionFailedComponent implements OnInit, OnDestroy {
 
     public output = "";
-    private speedOfPrintOut = 15;
+    private speedOfPrintOut = 25;
     public sound: Sound;
 
-    constructor(public soundEffectsService: SoundEffectsService) {
+    constructor(private storageService: StorageService, public soundEffectsService: SoundEffectsService) {
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("missionFailed").volume(20)
         this.sound.track.get("missionFailed").play()
     }
 
     ngOnInit(): void {
-        this.print("Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name?");
+        this.print(this.storageService.get("log").join("\n"));
     }
 
     ngOnDestroy(): void {
