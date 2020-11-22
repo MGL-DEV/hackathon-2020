@@ -23,7 +23,7 @@ export class LaunchScreenComponent implements OnInit {
 
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition((position): void => {
-                console.log('ok')
+                console.log("ok")
             }, (error) => {
                 console.log(error)
             }, {
@@ -41,7 +41,7 @@ export class LaunchScreenComponent implements OnInit {
             })
         }
 
-        this.storage.append("log", "Successful takeoff")
+        this.storage.set("log", ["Successful takeoff"])
         setTimeout(() => {
             this.websocketService.send({
                 status: 1

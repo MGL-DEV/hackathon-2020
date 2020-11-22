@@ -28,17 +28,20 @@ export class ReportComponent implements OnInit, AfterViewInit {
 
         const width = rect.width > rect.height ? rect.width : rect.height
         const height = rect.width > rect.height ? rect.height : rect.width
-        navigator.mediaDevices.getUserMedia({
-            video: {
-                width,
-                height
-            }
-        }).then(stream => {
-            this.video.nativeElement.srcObject = stream;
-            this.video.nativeElement.play()
-            this.video.nativeElement.captureStream = this.video.nativeElement.captureStream || this.video.nativeElement.mozCaptureStream;
-            return new Promise(resolve => this.video.nativeElement.onplaying = resolve);
-        })
+        if(navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    width,
+                    height
+                }
+            }).then(stream => {
+                this.video.nativeElement.srcObject = stream;
+                this.video.nativeElement.play()
+                this.video.nativeElement.captureStream = this.video.nativeElement.captureStream ||
+                this.video.nativeElement.mozCaptureStream;
+                return new Promise(resolve => this.video.nativeElement.onplaying = resolve);
+            })
+        }
     }
 
     ngOnInit(): void {
