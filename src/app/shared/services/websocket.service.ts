@@ -7,8 +7,8 @@ export class WebsocketService {
     ws: any;
     url: string;
 
-    constructor(url: string) {
-        this.url = url
+    constructor() {
+        this.url = "wss://sileo.mgldev.hu:8989"
         this.connect()
     }
     connect() {
