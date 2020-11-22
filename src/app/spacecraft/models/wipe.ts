@@ -10,12 +10,28 @@ class Canvas {
     cursor: {
         isDown: boolean
     }
+    touchDown = null
+    mouseDown = null
+    eventUpBind = null
+    touchMove = null
+    mouseMove = null
+    resize = null
+    isUnsubscribe = false
+
     constructor(args: Args) {
         this.load = new CanvasLoadImages();
         this.cursor = {
             isDown: false,
         }
         this.args = args;
+
+        this.touchDown = this.touchDownEvent.bind(this)
+        this.mouseDown = this.mouseDownEvent.bind(this)
+        this.eventUpBind = this.eventUp.bind(this)
+        this.touchMove = this.touchMoveEvent.bind(this)
+        this.mouseMove = this.mouseMoveEvent.bind(this)
+        this.resize = this.resizeCanvas.bind(this)
+
         this.preload();
     }
 
@@ -42,14 +58,15 @@ class Canvas {
         if(this.args.scale.height !== undefined) {
             this.args.scale.canvasObject.height = this.args.scale.height
         }
-        window.addEventListener("touchstart", this.touchDownEvent.bind(this), false);
-        window.addEventListener("mousedown", this.mouseDownEvent.bind(this), false);
-        window.addEventListener("mouseup", this.eventUp.bind(this), false);
-        window.addEventListener("touchend", this.eventUp.bind(this), false);
 
-        window.addEventListener("touchmove", this.touchMoveEvent.bind(this), {passive: false });
-        window.addEventListener("mousemove", this.mouseMoveEvent.bind(this), false);
-        window.addEventListener("resize", this.resizeCanvas.bind(this), false);
+        window.addEventListener("touchstart", this.touchDown, false);
+        window.addEventListener("mousedown", this.mouseDown, false);
+        window.addEventListener("mouseup", this.eventUpBind, false);
+        window.addEventListener("touchend", this.eventUpBind, false);
+
+        window.addEventListener("touchmove", this.touchMove, {passive: false });
+        window.addEventListener("mousemove", this.mouseMove, false);
+        window.addEventListener("resize", this.resize, false);
 
         const ctx = this.args.scale.canvasProc.getContext("2d")
         ctx.drawImage(this.load.images.mask.image,
@@ -112,6 +129,7 @@ class Canvas {
     }
 
     touchDownEvent(e: TouchEvent): void {
+        console.log('mouseDown')
         this.eventDown({
             x: e.touches[0].clientX,
             y: e.touches[0].clientY
@@ -170,6 +188,18 @@ class Canvas {
     createCollisionEvent() {
         const event = new Event("successWipe");
         window.dispatchEvent(event);
+    }
+
+    unsubscribe(): void {
+        this.isUnsubscribe = true
+        window.removeEventListener("touchstart", this.touchDown, false);
+        window.removeEventListener("mousedown", this.mouseDown, false);
+        window.removeEventListener("mouseup", this.eventUpBind, false);
+        window.removeEventListener("touchend", this.eventUpBind, false);
+
+        window.removeEventListener("touchmove", this.touchMove, false);
+        window.removeEventListener("mousemove", this.mouseMove, false);
+        window.removeEventListener("resize", this.resize, false);
     }
 
     resizeCanvas() {

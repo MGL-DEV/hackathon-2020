@@ -20,26 +20,7 @@ export class LaunchScreenComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
-        if (navigator.geolocation) {
-            navigator.geolocation.watchPosition((position): void => {
-                console.log("ok")
-            }, (error) => {
-                console.log(error)
-            }, {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
-        }
-        if (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({
-                video: {
-                    width: 0,
-                    height: 0
-                }
-            })
-        }
+        this.asteroidsService.generate();
 
         this.storage.set("log", ["Successful takeoff"])
         setTimeout(() => {
@@ -55,7 +36,6 @@ export class LaunchScreenComponent implements OnInit {
             status: 2
         })
         document.documentElement.requestFullscreen();
-        this.asteroidsService.generate();
         this.router.navigateByUrl("/cinematics/introduction");
     }
 

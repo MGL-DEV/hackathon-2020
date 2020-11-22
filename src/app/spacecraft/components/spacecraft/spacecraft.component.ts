@@ -3,9 +3,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
 import { Sound } from "@shared/models";
-
+*/
 import { timer } from "rxjs";
 
 import { Wipe } from "@app/spacecraft/models";
@@ -32,14 +32,15 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
     public eventSuccess = this.handleSucces.bind(this)
 
     public timeout = null
-    public sound: Sound;
+    //public sound: Sound;
     public countdown = 20
     public timerSubscribe = null
+    public wipe: Wipe
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public soundEffectsService: SoundEffectsService,
+        //public soundEffectsService: SoundEffectsService,
         public storage: StorageService,
         public websocketService: WebsocketService
     ) { }
@@ -49,8 +50,8 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
         this.websocketService.send({
             status: 5
         })
-        this.sound = this.soundEffectsService.get()
-        this.sound.track.get("gameLoop").playLoop()
+        /*this.sound = this.soundEffectsService.get()
+        this.sound.track.get("gameLoop").playLoop()*/
         window.addEventListener("successWipe", this.eventSuccess, false)
 
         const source = timer(1000, 100);
@@ -73,7 +74,7 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
             status: 5
         })
         this.next()
-        this.sound.track.get("gameLoop").stop()
+        //this.sound.track.get("gameLoop").stop()
         this.timerSubscribe.unsubscribe()
     }
 
@@ -83,7 +84,7 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
             this.default.nativeElement.style.height = `${window.innerHeight}px`
         }
 
-        const model = new Wipe({
+        this.wipe = new Wipe({
             scale: {
                 width: window.innerWidth,
                 height: window.innerHeight,
@@ -104,8 +105,9 @@ export class SpacecraftComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.sound.track.get("gameLoop").stop()
+        //this.sound.track.get("gameLoop").stop()
         this.timerSubscribe.unsubscribe()
+        this.wipe.unsubscribe()
         window.removeEventListener("successWipe", this.eventSuccess, false)
     }
 

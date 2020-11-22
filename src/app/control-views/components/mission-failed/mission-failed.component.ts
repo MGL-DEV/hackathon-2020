@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { StorageService } from "@core/services/storage.service";
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
-import { Sound } from "@shared/models";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
+import { Sound } from "@shared/models";*/
 
 @Component({
     selector: "app-mission-failed",
@@ -13,12 +13,14 @@ export class MissionFailedComponent implements OnInit, OnDestroy {
 
     public output = "";
     private speedOfPrintOut = 25;
-    public sound: Sound;
+    //public sound: Sound;
 
-    constructor(private storageService: StorageService, public soundEffectsService: SoundEffectsService) {
-        this.sound = this.soundEffectsService.get()
+    constructor(
+        private storageService: StorageService/*,
+        public soundEffectsService: SoundEffectsService*/) {
+        /*this.sound = this.soundEffectsService.get()
         this.sound.track.get("missionFailed").volume(20)
-        this.sound.track.get("missionFailed").play()
+        this.sound.track.get("missionFailed").play()*/
     }
 
     ngOnInit(): void {
@@ -26,7 +28,7 @@ export class MissionFailedComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.sound.track.get("missionFailed").stop()
+        //this.sound.track.get("missionFailed").stop()
     }
 
     share(): void {

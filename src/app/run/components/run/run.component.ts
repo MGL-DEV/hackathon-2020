@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
-import { Sound } from "@shared/models";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
+import { Sound } from "@shared/models";*/
 
 import { timer } from "rxjs";
 
@@ -24,7 +24,7 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
     public progress: ElementRef;
 
     public timeout = null
-    public sound: Sound;
+    //public sound: Sound;
     public countdown = 30
     public timerSubscribe = null
     public requiredSpeed = 0.5
@@ -33,7 +33,7 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public soundEffectsService: SoundEffectsService,
+       // public soundEffectsService: SoundEffectsService,
         public storage: StorageService,
         public websocketService: WebsocketService
     ) { }
@@ -43,8 +43,8 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
         this.websocketService.send({
             status: 10
         })
-        this.sound = this.soundEffectsService.get()
-        this.sound.track.get("gameLoop").playLoop()
+        /*this.sound = this.soundEffectsService.get()
+        this.sound.track.get("gameLoop").playLoop()*/
 
         const source = timer(1000, 100);
         this.timerSubscribe = source.subscribe(val => {
@@ -64,7 +64,7 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
                 const prec70 = 0.7 * this.requiredSpeed
                 if (position.coords.speed >= prec70) {
-                    this.sound.track.get("gameLoop").stop()
+                    //this.sound.track.get("gameLoop").stop()
                     this.timerSubscribe.unsubscribe()
                     this.storage.append("log", "Orbit wheel works again")
                     this.websocketService.send({
@@ -83,7 +83,7 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.sound.track.get("gameLoop").stop()
+        //this.sound.track.get("gameLoop").stop()
         this.timerSubscribe.unsubscribe()
         this.rotate.unsubscribe()
     }

@@ -4,8 +4,8 @@ import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
 import { AsteroidsService } from "@app/asteroid-field/services/asteroids.service";
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
-import { Sound } from "@shared/models";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
+import { Sound } from "@shared/models";*/
 
 import { Asteroid } from "@app/asteroid-field/models";
 
@@ -21,20 +21,20 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public eventDestroy = this.handleEventDestroy.bind(this)
     public timeout = null
-    public sound: Sound;
+    //public sound: Sound;
     public asteroid: Asteroid
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public soundEffectsService: SoundEffectsService,
+        //public soundEffectsService: SoundEffectsService,
         public asteroidsService: AsteroidsService,
         public storage: StorageService,
         public websocketService: WebsocketService
     ) { }
 
     handleEventDestroy() {
-        this.sound.track.get("explosion").play()
+        //this.sound.track.get("explosion").play()
         clearTimeout(this.timeout)
 
         this.fail()
@@ -49,15 +49,15 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
             status: 7
         })
         this.timeout = setTimeout(() => this.next(), 50000);
-        this.sound = this.soundEffectsService.get()
-        this.sound.track.get("gameLoop").playLoop()
+        /*this.sound = this.soundEffectsService.get()
+        this.sound.track.get("gameLoop").playLoop()*/
 
         window.addEventListener("shipDestroyed", this.eventDestroy, false)
     }
 
     ngOnDestroy() {
-        this.sound.track.get("explosion").stop()
-        this.sound.track.get("gameLoop").stop()
+        /*this.sound.track.get("explosion").stop()
+        this.sound.track.get("gameLoop").stop()*/
         window.removeEventListener("shipDestroyed", this.eventDestroy, false)
         this.asteroid.unsubscribe()
     }

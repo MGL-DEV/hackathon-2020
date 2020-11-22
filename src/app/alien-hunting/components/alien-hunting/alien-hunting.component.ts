@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { StorageService } from "@app/core/services/storage.service";
 import { WebsocketService } from "@shared/services/websocket.service";
 
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
-import { Sound } from "@shared/models";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
+import { Sound } from "@shared/models";*/
 
 @Component({
     selector: "app-alien-hunting",
@@ -22,12 +22,12 @@ export class AlienHuntingComponent implements OnInit, OnDestroy {
     public side = false
     public shots = 0
 
-    public sound: Sound;
+    //public sound: Sound;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public soundEffectsService: SoundEffectsService,
+        // public soundEffectsService: SoundEffectsService,
         public storage: StorageService,
         public websocketService: WebsocketService
     ) { }
@@ -38,12 +38,12 @@ export class AlienHuntingComponent implements OnInit, OnDestroy {
             status: 9
         })
         window.addEventListener("deviceorientation", this.event, false)
-        this.sound = this.soundEffectsService.get()
+        //this.sound = this.soundEffectsService.get()
     }
 
     ngOnDestroy() {
         window.removeEventListener("deviceorientation", this.event, false)
-        this.sound.track.get("laserPew").stop()
+        //this.sound.track.get("laserPew").stop()
     }
 
     handleEvent(event): void {
@@ -73,14 +73,14 @@ export class AlienHuntingComponent implements OnInit, OnDestroy {
 
     shot() {
         if (this.side === false || this.bottom === false || this.top === false) return false;
-        this.sound.track.get("laserPew").stop()
+        //this.sound.track.get("laserPew").stop()
         navigator.vibrate(200);
         this.bottom = false
         this.top = false
         this.bottomClear = true
         this.topClear = true
         this.shots++
-        this.sound.track.get("laserPew").play()
+        //this.sound.track.get("laserPew").play()
         if (this.shots >= 4) {
             this.next()
         }

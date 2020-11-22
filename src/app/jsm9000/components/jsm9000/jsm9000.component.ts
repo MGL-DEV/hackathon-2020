@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { SoundEffectsService } from "@shared/services/sound-effects.service";
+/*import { SoundEffectsService } from "@shared/services/sound-effects.service";
 import { Sound } from "@shared/models";
-
+*/
 import { JSM9000State } from "@app/jsm9000/models";
 
 interface Chapter {
@@ -20,29 +20,29 @@ interface Chapter {
 export class Jsm9000Component implements OnInit, OnDestroy {
 
     public chapter: Chapter;
-    public sound: Sound;
+    //public sound: Sound;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public soundEffectsService: SoundEffectsService,
+        //public soundEffectsService: SoundEffectsService,
     ) {
         this.chapter = route.snapshot.data.chapter;
 
-        this.sound = this.soundEffectsService.get()
+        /*this.sound = this.soundEffectsService.get()
         if(this.chapter.status === JSM9000State.Success) {
             this.sound.track.get("winLoop").volume(10)
             this.sound.track.get("winLoop").play()
-        }
+        }*/
     }
 
     ngOnInit(): void {
     }
 
     ngOnDestroy(): void {
-        if(this.chapter.status === JSM9000State.Success) {
+        /*if(this.chapter.status === JSM9000State.Success) {
             this.sound.track.get("winLoop").stop()
-        }
+        }*/
     }
 
     next(): void {

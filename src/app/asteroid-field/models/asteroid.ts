@@ -16,6 +16,12 @@ export default class Asteroid {
     lastAsteroidCreated = 0
     preloadAsteroids = []
     isUnsubscribe = false
+
+    resizeCanvasHandler = null
+    keydownHandler = null
+    keyupHandler = null
+    handleOrientationHandler = null
+
     constructor(args: Args) {
         this.load = new CanvasLoadImages();
         this.preloadAsteroids = args.asteroids
@@ -26,6 +32,11 @@ export default class Asteroid {
             up: { isDown: false},
             down: { isDown: false},
         }
+
+        this.resizeCanvasHandler = this.resizeCanvas.bind(this)
+        this.keydownHandler = this.keydown.bind(this)
+        this.keyupHandler = this.keyup.bind(this)
+        this.handleOrientationHandler = this.handleOrientation.bind(this)
 
         this.args = args;
         this.preload();
@@ -56,10 +67,10 @@ export default class Asteroid {
             this.args.scale.canvasObject.height = this.args.scale.height
         }
 
-        window.addEventListener("resize", this.resizeCanvas.bind(this), false);
-        window.addEventListener("keydown", this.keydown.bind(this), false)
-        window.addEventListener("keyup", this.keyup.bind(this), false)
-        window.addEventListener("deviceorientation", this.handleOrientation.bind(this), true);
+        window.addEventListener("resize", this.resizeCanvasHandler, false);
+        window.addEventListener("keydown", this.keydownHandler, false)
+        window.addEventListener("keyup", this.keyupHandler, false)
+        window.addEventListener("deviceorientation", this.handleOrientationHandler, false);
 
         this.ctx = this.args.scale.canvasObject.getContext("2d")
 
@@ -370,6 +381,10 @@ export default class Asteroid {
 
     unsubscribe() {
         this.isUnsubscribe = true
+        window.removeEventListener("resize", this.resizeCanvasHandler, false);
+        window.removeEventListener("keydown", this.keydownHandler, false)
+        window.removeEventListener("keyup", this.keyupHandler, false)
+        window.removeEventListener("deviceorientation", this.handleOrientationHandler, false);
     }
 
     renderShip(object: Player): void {
