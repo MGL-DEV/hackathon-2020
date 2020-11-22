@@ -26,6 +26,7 @@ export class LaunchScreenComponent implements OnInit {
                 maximumAge: 0
             });
         }
+
         if (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
                 video: {

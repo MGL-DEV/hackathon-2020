@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { StorageService } from "@app/core/services/storage.service";
+import { WebsocketService } from "@shared/services/websocket.service";
 
 import { SoundEffectsService } from "@shared/services/sound-effects.service";
 import { Sound } from "@shared/models";
@@ -32,9 +34,15 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
         private route: ActivatedRoute,
         private router: Router,
         public soundEffectsService: SoundEffectsService,
+        public storage: StorageService,
+        public websocketService: WebsocketService
     ) { }
 
     ngOnInit(): void {
+        this.storage.append("log", "Orbit wheel stopped")
+        this.websocketService.send({
+            status: 10
+        })
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
 
@@ -58,6 +66,10 @@ export class RunComponent implements OnInit, OnDestroy, AfterViewInit {
                 if (position.coords.speed >= prec70) {
                     this.sound.track.get("gameLoop").stop()
                     this.timerSubscribe.unsubscribe()
+                    this.storage.append("log", "Orbit wheel works again")
+                    this.websocketService.send({
+                        status: 11
+                    })
                     this.next()
                 }
             }, (error) => {
