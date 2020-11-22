@@ -47,7 +47,7 @@ class Canvas {
         window.addEventListener("mouseup", this.eventUp.bind(this), false);
         window.addEventListener("touchend", this.eventUp.bind(this), false);
 
-        window.addEventListener("touchmove", this.touchMoveEvent.bind(this), false);
+        window.addEventListener("touchmove", this.touchMoveEvent.bind(this), {passive: false });
         window.addEventListener("mousemove", this.mouseMoveEvent.bind(this), false);
         window.addEventListener("resize", this.resizeCanvas.bind(this), false);
 
@@ -131,6 +131,7 @@ class Canvas {
     }
 
     touchMoveEvent(e: TouchEvent): void {
+        e.preventDefault()
         this.eventMove({
             x: e.touches[0].clientX,
             y: e.touches[0].clientY
