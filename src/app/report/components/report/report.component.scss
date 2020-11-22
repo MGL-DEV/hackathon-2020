@@ -1,0 +1,35 @@
+.video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.screen{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.rec{
+    position: absolute;
+    left: 6%;
+    top: 10%;
+    width: 19%;
+    display: none;
+}
+
+.record-button{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    width: 45%;
+    transform: translateX(-50%);
+    padding-top: 24%;
+    touch-action: none;
+    user-select: none;
+}

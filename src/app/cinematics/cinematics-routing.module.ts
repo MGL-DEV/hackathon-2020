@@ -9,7 +9,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/jsm9000/spacecraft-chapter"
             }
         }
@@ -18,7 +18,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/jsm9000/asteroid-field-chapter"
             }
         }
@@ -27,7 +27,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/jsm9000/alien-hunting-chapter"
             }
         }
@@ -36,7 +36,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/jsm9000/run-chapter"
             }
         }
@@ -45,7 +45,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/jsm9000/end"
             }
         }
@@ -54,7 +54,7 @@ const routes: Routes = [
         component: VideoComponent,
         data: {
             scene: {
-                source: "",
+                source: "https://sileo.mgldev.hu/video/link_video1.mp4",
                 next: "/big-red-button"
             }
         }

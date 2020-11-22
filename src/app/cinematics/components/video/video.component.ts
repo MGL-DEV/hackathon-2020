@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 interface Scene {
@@ -13,6 +13,9 @@ interface Scene {
 })
 export class VideoComponent implements OnInit {
 
+    @ViewChild("video", { static: false })
+    public video: ElementRef;
+
     public scene: Scene;
 
     constructor(
@@ -23,7 +26,6 @@ export class VideoComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        setTimeout( () => this.next(), 2000);
     }
 
     next(): void {
