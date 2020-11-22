@@ -19,6 +19,7 @@ export class SoundEffectsService {
             digitalNoiz: "https://sileo.mgldev.hu/sound/digital_noiz.mp3",
             button: "https://sileo.mgldev.hu/sound/button.mp3",
             ambientAtmo: "https://sileo.mgldev.hu/sound/ambient_atmo.mp3",
+            missionFailed: "https://sileo.mgldev.hu/sound/mission_failed.mp3",
         });
         return sound;
     }
