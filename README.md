@@ -52,6 +52,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Android OS
 - Chrome Browser Application
 
+## Tested at
+
+- Android OS
+- Pocophone f1 10 QKQ1.190828.002
+- Chrome Browser V87.0.4280.66
+
 ## Install
 
 Run `npm install` to install packages.
