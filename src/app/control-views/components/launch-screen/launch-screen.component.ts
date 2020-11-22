@@ -52,7 +52,7 @@ export class LaunchScreenComponent implements OnInit {
         this.websocketService.send({
             status: 2
         })
-        this.router.navigateByUrl("/jsm9000/introduction");
+        this.router.navigateByUrl("/cinematics/introduction");
     }
 
 }
