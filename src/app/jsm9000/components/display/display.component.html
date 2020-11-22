@@ -1,3 +1,9 @@
-<div class="display">
-    <p class="display__console" [innerHTML]="output|nl2br"></p>
+<div class="display" [ngClass]="{'is-success': status === 'success', 'is-alert': status === 'alert'}">
+    <div class="display__container">
+        <ng-container [ngSwitch]="status">
+            <figure *ngSwitchCase="'success'" class="display__message"><img src="/assets/images/success.png" /></figure>
+            <figure *ngSwitchCase="'alert'" class="display__message"><img src="/assets/images/alert.png" /></figure>
+         </ng-container>
+        <p class="display__console" [innerHTML]="output|nl2br"></p>
+    </div>
 </div>

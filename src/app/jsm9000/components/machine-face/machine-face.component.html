@@ -1,4 +1,4 @@
-<header class="machine-face">
+<header class="machine-face" [ngClass]="{'is-success': status === 'success', 'is-alert': status === 'alert'}">
     <figure class="machine-face__logo image">
         <img src="/assets/images/jsm-9000.jpg" />
     </figure>

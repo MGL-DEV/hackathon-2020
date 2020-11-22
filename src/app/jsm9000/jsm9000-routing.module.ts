@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { Jsm9000Component } from "./components";
 
+import { JSM9000State } from "./models";
+
 const routes: Routes = [
     {
         path: "introduction",
@@ -9,7 +11,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/introduction.txt",
-                next: "/big-red-button"
+                next: "/big-red-button",
+                status: JSM9000State.Default
             }
         }
     }, {
@@ -18,7 +21,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/spacecraft-chapter.txt",
-                next: "/spacecraft"
+                next: "/spacecraft",
+                status: JSM9000State.Alert
             }
         }
     }, {
@@ -27,7 +31,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/spacecraft-success.txt",
-                next: "/jsm9000/report-chapter"
+                next: "/jsm9000/report-chapter",
+                status: JSM9000State.Success
             }
         }
     }, {
@@ -36,7 +41,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/report-chapter.txt",
-                next: "/report"
+                next: "/report",
+                status: JSM9000State.Default
             }
         }
     }, {
@@ -45,7 +51,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/report-success.txt",
-                next: "/cinematics/travel/1"
+                next: "/cinematics/travel/1",
+                status: JSM9000State.Default
             }
         }
     }, {
@@ -54,7 +61,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/asteroid-field-chapter.txt",
-                next: "/asteroid-field"
+                next: "/asteroid-field",
+                status: JSM9000State.Alert
             }
         }
     }, {
@@ -63,7 +71,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/asteroid-field-success.txt",
-                next: "/cinematics/travel/2"
+                next: "/cinematics/travel/2",
+                status: JSM9000State.Success
             }
         }
     }, {
@@ -72,7 +81,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/alien-hunting-chapter.txt",
-                next: "/alien-hunting"
+                next: "/alien-hunting",
+                status: JSM9000State.Alert
             }
         }
     }, {
@@ -81,7 +91,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/alien-hunting-success.txt",
-                next: "/cinematics/travel/3"
+                next: "/cinematics/travel/3",
+                status: JSM9000State.Success
             }
         }
     }, {
@@ -90,7 +101,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/run-chapter.txt",
-                next: "/run"
+                next: "/run",
+                status: JSM9000State.Alert
             }
         }
     }, {
@@ -99,7 +111,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/run-success.txt",
-                next: "/cinematics/travel/4"
+                next: "/cinematics/travel/4",
+                status: JSM9000State.Success
             }
         }
     }, {
@@ -108,7 +121,8 @@ const routes: Routes = [
         data: {
             chapter: {
                 source: "./assets/subtitles/end.txt",
-                next: "/cinematics/end"
+                next: "/cinematics/end",
+                status: JSM9000State.Default
             }
         }
     }

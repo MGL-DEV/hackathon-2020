@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from "@angular/core";
 
+import { JSM9000State } from "@app/jsm9000/models";
 import { ReaderService } from "@app/jsm9000/services/reader.service";
 import { VoiceOverService } from "@app/jsm9000/services/voice-over.service";
 
@@ -9,6 +10,9 @@ import { VoiceOverService } from "@app/jsm9000/services/voice-over.service";
     styleUrls: ["./display.component.scss"]
 })
 export class DisplayComponent implements OnInit, OnDestroy {
+
+    @Input()
+    public status = JSM9000State.Default;
 
     @Input()
     public source: string;

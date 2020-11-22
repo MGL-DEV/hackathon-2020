@@ -8,12 +8,15 @@
     height: calc(100vh - 130px);
     padding: 15px;
 
-    background: black;
+    background: linear-gradient(180deg, #001629 0%, #30032E 100%);
+
+    &__container
+    {
+        flex: 1 1 auto;
+    }
 
     &__console
     {
-        flex: 1 1 auto;
-
         letter-spacing: .02em;
 
         color: #ffffff;
@@ -30,4 +33,38 @@
             content: '<_ ';
         }
     }
+
+    &__message
+    {
+        img 
+        {
+            width: 345px
+        }
+    }
+
+    /**
+     * Success
+    */
+    &.is-success 
+    {
+        background: linear-gradient(180deg, #001F29 0%, #027A65 100%);
+    }
+
+    &.is-success &__console
+    {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 0px 0px 20px #30FF5D, 20px -30px 25px rgba(204, 255, 218, 0.25);
+    }    
+
+    /**
+     * Alert
+    */
+    &.is-alert
+    {
+        background: linear-gradient(180deg, #001629 0%, #7A0202 100%);
+    }
+
+    &.is-alert &__console
+    {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 0px 0px 20px #FF3030, 20px -30px 25px rgba(255, 204, 204, 0.25);
+    } 
 }
