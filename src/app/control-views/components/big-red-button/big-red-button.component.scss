@@ -34,11 +34,13 @@
     height: 250px;
     margin: 0 auto;
     margin-bottom: 50px;
+    padding: 0;
 
     cursor: pointer;
 
     border: 5px solid #000000;
     border-radius: 50%;
+    outline: none;
     background: #3d0000;
     box-shadow: 21px 47px 17px -20px rgba(0, 0, 0, .4), 0 0 4px 0 #d8d8d8;
 

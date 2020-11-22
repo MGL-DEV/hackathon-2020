@@ -1,6 +1,6 @@
 <h1 class="title">Mission failed!</h1>
 <div class="control">
-    <a [routerLink]="['/']" class="button button--large" *ngIf="hasShare" (click)="share()">Share</a>
+    <button *ngIf="hasShare" (click)="share()" class="button button--large">Share</button>
     <a [routerLink]="['/']" class="button">Back to the menu</a>
 </div>
 <article class="console">

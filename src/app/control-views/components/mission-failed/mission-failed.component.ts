@@ -19,9 +19,9 @@ export class MissionFailedComponent implements OnInit {
     share(): void {
         if (navigator.share) {
             navigator.share({
-                title: "Sielo",
+                title: "Sileo",
                 text: "Hey Bro, You must check this out! :male-astronaut: Mission SILEO! :rocket:",
-                url: "https://sielo.mgldev.hu"
+                url: "https://sileo.mgldev.hu"
             });
         }
     }
