@@ -23,7 +23,7 @@ export class LaunchScreenComponent implements OnInit {
 
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition((position): void => {
-                console.log('ok')
+                console.log("ok")
             }, (error) => {
                 console.log(error)
             }, {
