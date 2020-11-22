@@ -253,12 +253,14 @@ export default class Asteroid {
         }
 
         if(this.preloadAsteroids.length === 0) {
+            return false
             throw new Error("no more item")
         }
 
         const asteroid = this.preloadAsteroids.pop()
 
         if(this.load.images[asteroid.assets] === undefined) {
+            return false
             throw new Error("no asset found")
         }
 
