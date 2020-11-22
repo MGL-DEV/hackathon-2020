@@ -7,9 +7,13 @@ import { Component, OnInit } from "@angular/core";
 })
 export class MissionFailedComponent implements OnInit {
 
+    public output = "";
+    private speedOfPrintOut = 15;
+
     constructor() { }
 
     ngOnInit(): void {
+        this.print("Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name? Hey cowboy! Welcome on board. I will be your AI assistence during the mission. My name is JSM9000. What is your name?");
     }
 
     share(): void {
@@ -24,6 +28,13 @@ export class MissionFailedComponent implements OnInit {
 
     get hasShare(): boolean {
         return !!navigator.share;
+    }
+
+    print(output): void {
+        // TODO: handeling overflow
+        [...output].forEach((letter, index) => {
+            setTimeout(() => this.output += letter, index * this.speedOfPrintOut);
+        });
     }
 
 }

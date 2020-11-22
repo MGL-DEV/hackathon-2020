@@ -3,3 +3,8 @@
     <a [routerLink]="['/']" class="button button--large" *ngIf="hasShare" (click)="share()">Share</a>
     <a [routerLink]="['/']" class="button">Back to the menu</a>
 </div>
+<article class="console">
+    <h2 class="console__title">Black box log</h2>
+    <p class="console__description">If somebody finds your ship, will know what did you screw up</p>
+    <p class="console__output">{{output}}</p>
+</article>
