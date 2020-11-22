@@ -65,6 +65,7 @@ export class AlienHuntingComponent implements OnInit, OnDestroy {
 
     shot() {
         if(this.side === false || this.bottom === false || this.top === false) return false;
+        this.sound.track.get("laserPew").stop()
         navigator.vibrate(200);
         this.bottom = false
         this.top = false
