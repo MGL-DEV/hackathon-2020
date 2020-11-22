@@ -162,7 +162,7 @@ class Canvas {
         this.ctx.fill();
 
         let proc = (this.fullAmount(32) * 100) || 0
-        if(proc < 18) {
+        if(proc < 29) {
             this.createCollisionEvent()
         }
     }

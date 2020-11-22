@@ -40,7 +40,7 @@ export class AsteroidFieldComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     ngOnInit(): void {
-        this.timeout = setTimeout( () => this.next(), 20000);
+        this.timeout = setTimeout( () => this.next(), 90000);
         this.sound = this.soundEffectsService.get()
         this.sound.track.get("gameLoop").playLoop()
 
