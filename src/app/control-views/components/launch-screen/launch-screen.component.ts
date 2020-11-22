@@ -38,7 +38,7 @@ export class LaunchScreenComponent implements OnInit {
     start(): void {
         document.documentElement.requestFullscreen();
         this.asteroidsService.generate();
-        this.router.navigateByUrl("/jsm9000/introduction");
+        this.router.navigateByUrl("/cinematics/introduction");
     }
 
 }
