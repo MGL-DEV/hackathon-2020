@@ -26,7 +26,7 @@ export class Jsm9000Component implements OnInit {
     }
 
     next(): void {
-        setTimeout( () => this.router.navigateByUrl(this.chapter.next), 500);
+        setTimeout( () => this.router.navigateByUrl(this.chapter.next), 1000);
     }
 
 }

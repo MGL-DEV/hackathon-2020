@@ -12,7 +12,7 @@ export class WebsocketService {
         this.connect()
     }
     connect() {
-        this.ws = new WebSocket(this.url, 'echo-protocol')
+        this.ws = new WebSocket(this.url, "echo-protocol")
         let reconnectInterval = 1000
         this.ws.onopen = () => {
             reconnectInterval = 1000
@@ -52,7 +52,7 @@ export class WebsocketService {
     }
     send(data: object) {
         console.log("send")
-        if (this.ws.readyState != WebSocket.OPEN) {
+        if (this.ws.readyState !== WebSocket.OPEN) {
             console.error("webSocket is not open: " + this.ws.readyState);
             return;
         }

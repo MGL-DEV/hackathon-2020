@@ -43,8 +43,7 @@ export class ReportComponent implements OnInit {
             video: {
                 width,
                 height
-            },
-            audio: true
+            }
         }).then(stream => {
             this.video.srcObject = stream;
             this.video.play()
@@ -100,6 +99,7 @@ export class ReportComponent implements OnInit {
                         key: "video",
                         value: text
                     })
+                    this.next()
                 });
             });
     }
