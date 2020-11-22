@@ -1,4 +1,4 @@
-<video id="video" class="video" muted></video>
+<video #video class="video" muted></video>
 <img src="/assets/images/REC_SCREEN.png" class="screen" />
 <img id="rec" src="/assets/images/REC.png" class="rec" />
-<div class="record-button" style="background:url('/assets/images/RECORD_BUTTON.png') no-repeat center/cover"></div>
+<div class="record-button" (touchstart)="start()" (touchend)="stop()"></div>

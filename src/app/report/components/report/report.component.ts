@@ -1,6 +1,6 @@
 /// <reference types="@types/dom-mediacapture-record" />
 
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { IDBService } from "@app/core/services/idb.service";
 import { WebsocketService } from "@shared/services/websocket.service";
@@ -10,8 +10,9 @@ import { WebsocketService } from "@shared/services/websocket.service";
     templateUrl: "./report.component.html",
     styleUrls: ["./report.component.scss"]
 })
-export class ReportComponent implements OnInit {
-    video: any;
+export class ReportComponent implements OnInit, AfterViewInit {
+    @ViewChild("video")
+    video: ElementRef;
     recorder: any;
     recording = false;
 
@@ -22,20 +23,8 @@ export class ReportComponent implements OnInit {
         public websocketService: WebsocketService
     ) { }
 
-    ngOnInit(): void {
-        // setTimeout( () => this.next(), 2000);
-        let button = document.querySelector(".record-button");
-
-        button.addEventListener("touchstart", (event) => {
-            this.start()
-        });
-
-        button.addEventListener("touchend", (event) => {
-            this.stop()
-        });
-
-        this.video = document.querySelector("#video");
-        const rect = this.video.getBoundingClientRect()
+    ngAfterViewInit(): void {
+        const rect = this.video.nativeElement.getBoundingClientRect()
 
         const width = rect.width > rect.height ? rect.width : rect.height
         const height = rect.width > rect.height ? rect.height : rect.width
@@ -45,13 +34,14 @@ export class ReportComponent implements OnInit {
                 height
             }
         }).then(stream => {
-            this.video.srcObject = stream;
-            this.video.play()
-            this.video.captureStream = this.video.captureStream || this.video.mozCaptureStream;
-            return new Promise(resolve => this.video.onplaying = resolve);
+            this.video.nativeElement.srcObject = stream;
+            this.video.nativeElement.play()
+            this.video.nativeElement.captureStream = this.video.nativeElement.captureStream || this.video.nativeElement.mozCaptureStream;
+            return new Promise(resolve => this.video.nativeElement.onplaying = resolve);
         })
+    }
 
-
+    ngOnInit(): void {
     }
     startRecording(stream: any): any {
         this.recorder = new MediaRecorder(stream);
@@ -79,7 +69,7 @@ export class ReportComponent implements OnInit {
     }
     stop(): void {
         setTimeout(() => {
-            this.video.srcObject.getTracks().forEach((track: { stop: () => any; }) => track.stop());
+            this.video.nativeElement.srcObject.getTracks().forEach((track: { stop: () => any; }) => track.stop());
             this.recording = false;
             this.websocketService.send({
                 status: 3
@@ -91,7 +81,7 @@ export class ReportComponent implements OnInit {
         console.log("Recording started")
         this.recording = true;
         this.toggleRec();
-        this.startRecording(this.video.captureStream())
+        this.startRecording(this.video.nativeElement.captureStream())
             .then(recordedChunks => {
                 let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
                 recordedBlob.arrayBuffer().then(text => {
